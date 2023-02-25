@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% include 'components/messages.html' %}
+        <div class="mt-4 mb-4" style="min-height: 100vh">
+            <h3 class="text-muted text-center">List of Services</h3>
+            <div class="card card-body" style="box-shadow: 0 0 0.5cm rgba(40,40,40, 0.5);">
+                <input class="form-control" id="search" type="text" placeholder="Search" aria-label="Search">
+                <div class="table-responsive text-nowrap">
+                    <table id="myTable" class="table">
+                        <thead>
+                        <tr>
+                            <th class="font-weight-bolder" scope="col">#</th>
+                            <th class="font-weight-bolder" scope="col">Category</th>
+                            <th class="font-weight-bolder" scope="col">Service Name</th>
+                            <th class="font-weight-bolder" scope="col">Quality</th>
+                            <th class="font-weight-bolder" scope="col">Price for 1000</th>
+                            <th class="font-weight-bolder" scope="col">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for smm_service in smm_services %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td style="color: #a028bf">{{ smm_service.category.category_name }}</td>
+                                <td>{{ smm_service.service_name }}</td>
+                                <td>{{ smm_service.service_tag }}</td>
+                                <td class="font-weight-bolder" style="color: firebrick">
+                                    &#8377; {{ smm_service.service_price }}</td>
+                                <td>{{ smm_service.service_description|linebreaks }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}
+{% block app_js %}
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#search").keyup(function () {
+                const value = $(this).val().toLowerCase();
+                console.log(value)
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

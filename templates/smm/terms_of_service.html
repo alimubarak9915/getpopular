@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block app_css %}
+    <style>
+        small {
+            text-align: justify;
+            text-justify: inter-word;
+            padding: 1px;
+        }
+
+        body {
+            background-color: #BDC1BB;
+        }
+
+    </style>
+{% endblock %}
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container" id="hero" style="min-height: 100vh">
+        <div class="card card-body mt-4 mb-4" style="box-shadow: 0 0 0.5cm rgba(40,40,40, 0.5);">
+            <h5 class="text-muted mb-0" id="terms">Terms of Service <em>getpopular.in</em></h5>
+            <hr class="mt-1">
+            <small class="text-muted mb-2">✔ The use of services provided by <em>getpopular.in</em> smm panel
+                establishes
+                agreement to these terms. By registering or using our services you agree that you have read and fully
+                understood the following terms of Service and <em>getpopular.in</em> smm panel will not be held liable
+                for loss in any way for users who have not read the below terms of service.
+            </small>
+            <small class="text-muted mb-2">✔ <em>getpopular.in</em> does not guarantee a delivery time for any
+                services. We offer our best estimation for when the order will be delivered. This is only an estimation
+                and <em>getpopular.in</em> will not refund orders that are processing if you feel they are taking too
+                long.
+            </small>
+            <small class="text-muted mb-2">✔ We reserve the right to change these terms of service without notice. You
+                are expected to read all terms of service before placing every order to insure you are up-to-date with
+                any changes or any future changes.
+            </small>
+            <small class="text-muted mb-2">✔ <em>getpopular.in</em> rates are subject to change at any time without
+                notice. The payment/refund policy stays in effect in the case of rate changes.
+            </small>
+            <small class="text-muted mb-2">✔ Disclaimers : <em>getpopular.in</em> will not be responsible for any
+                damages you or your business may suffer.
+            </small>
+            <small class="text-muted mb-2">✔ Liabilities : <em>getpopular.in</em> is in no way liable for any account
+                suspension or picture deletion done by Instagram or Twitter or Facebook or YouTube or Other Social
+                Media.
+            </small>
+            <h5 class="text-muted mb-0 mt-2" id="privacy">Privacy Policy <em>getpopular.in</em></h5>
+            <hr class="mt-1">
+            <small class="text-muted mb-2">This policy covers how we use your personal information. We take your privacy
+                seriously and will take all measures to protect your personal information. Any personal information
+                received will only be used to fill your order. We will not sell or redistribute
+                your information to anyone.
+            </small>
+            <h5 class="text-muted mb-0 mt-2">Refund Policy <em>getpopular.in</em></h5>
+            <hr class="mt-1">
+            <small class="text-muted mb-2">
+                ✔ No refunds will be made . After an order has been completed, there is no way to reverse it.
+            </small>
+            <small class="text-muted mb-2">
+                ✔ You agree that upon purchasing our services, that you clearly understand and agree what you are
+                purchasing and will not file a fraudulent dispute via Paytm or any other Payment sources
+            </small>
+            <small class="text-muted mb-2">
+                ✔ Upon a fraudulent attempt to file a dispute, we receive the right, if necessary, to reset all
+                followers and likes, terminate your account and/or permanently ban your IP address.
+            </small>
+            <small class="text-muted mb-2">
+                ✔ Fraudulent activity such as using unauthorized or stolen credit cards will lead to termination of your
+                account. There are no exceptions.
+            </small>
+            <small class="text-muted mb-2">
+                ✔ Please do not use more than one server at the same time for the same page. We cannot give you correct
+                followers/likes number in that case. We will not refund for these orders. Please keep attention!
+            </small>
+            <small class="text-muted mb-2">
+                ✔ we will refund for your canceled order in <em>getpopular.in</em> account only
+            </small>
+            <small class="text-muted mb-2">
+                ✔ We have Full Right To Change T&C Anytime
+            </small>
+            <h5 class="text-muted mb-0 mt-2" id="contact">Contact <em>getpopular.in</em></h5>
+            <hr class="mt-1">
+            <small class="text-muted mb-2">
+                If you have any questions about this Privacy Policy, please contact us: Whatsapp 9740667246 <em>getpopular.in</em>
+                smm panel
+            </small>
+            <h5 class="text-muted mb-0 mt-2" id="about">About <em>getpopular.in</em></h5>
+            <hr class="mt-1">
+            <small class="text-muted mb-2">
+                What we offer ? As cheap smm panel we offer all types of Social Media Marketing Services at
+                Resellers rate for promoting your or your clients Smm Social Media Profiles including Instagram,
+                Facebook just with a click of button. We provide complete solution for Social Media needs !
+            </small>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}

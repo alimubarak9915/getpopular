@@ -1,0 +1,60 @@
+<div class="modal fade" id="myModal" data-backdrop="static">
+    <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">New Order</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'smm:create_order' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="category_id" class="mb-0">Category</label>
+                        <select name="category" class="form-control form-control-sm" id="category_id" required>
+                            <option selected disabled>Select Category</option>
+                            {% for x in cd %}
+                                <option value="{{ x.category_name }}">{{ x.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="services_id" class="mb-0">Service</label>
+                        <select name="services" class="form-control form-control-sm" id="services_id" required>
+                            <option selected disabled>Select Service</option>
+                            {% for y in sd %}
+                                <option value="{{ y.service_name }}">{{ y.service_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-0" for="amount_id">Amount For 1000</label>
+                        <input type="text" name="amount" class="form-control form-control-sm" id="amount_id"
+                               value="" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-0" for="description_id">Description</label>
+                        <textarea class="form-control form-control-sm" name="description" id="description_id"
+                                  rows="4" readonly required style="overflow: auto"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="link_id" class="mb-0">Link (<small class="text-danger">Account Must be
+                            Public</small>)</label>
+                        <input type="text" name="link" class="form-control form-control-sm" id="link_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity_id" class="mb-0">Quantity</label><small id="min-quantity"
+                                                                                     class="text text-danger"></small>
+                        <input type="number" name="quantity" class="form-control form-control-sm" id="quantity_id"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payable_id" class="mb-0">Amount Payable</label>
+                        <input name="payable_amount" type="text" class="form-control form-control-sm" id="payable_id"
+                               readonly required>
+                    </div>
+                    <button id="order" type="submit" class="btn btn-sm btn-secondary rounded-pill w-100">order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

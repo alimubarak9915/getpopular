@@ -1,0 +1,37 @@
+{% load static %}
+<div class="modal fade" id="myModal" data-backdrop="static">
+    <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Funds To Wallet</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'smm:create_order' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <img class="img-fluid"
+                             src="{% static '../../static/img/PhonePeQR_Karnataka Bank  - 47XX1684735445.png' %}">
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-0" for="amount_id">Amount Paid</label>
+                        <input type="text" name="amount" class="form-control form-control-sm" id="amount_id"
+                               value="" required>
+                    </div>
+                    <section class="section-preview">
+                        <div class="input-group my-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Upload Screen Shot</label>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <button id="order" type="submit" class="btn btn-sm btn-secondary rounded-pill w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

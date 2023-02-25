@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block app_css %}
+    <style>
+        #hero {
+
+        }
+    </style>
+{% endblock %}
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="container" id="hero" style="min-height: 100vh">
+
+        {% include 'components/messages.html' %}
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <div class="card bg-light mb-4 text-center">
+                    <div class="card-body">
+                        <img src="../../static/img/icons8-male-64.png" alt="user">
+                        <h5>{{ user.email }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-light mb-4 text-center">
+                    <div class="card-body">
+                        <img src="../../static/img/icons8-order-64.png" alt="user">
+                        <h5 class="mt-1">Number of orders {{ orders_obj.count }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light mb-4 p-2 ">
+                    <h3 class="text-center">Wallet</h3>
+                    <hr class="mt-1">
+                    <div class="row text-center">
+                        <div class="col-lg-6 h3">
+                            <span class="text-primary">₹ {{ wallet_obj.wallet_balance|default:0 }}</span> REMAINING
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-sm btn-primary rounded-pill" data-toggle="modal"
+                                    data-target="#myModal">
+                                Add Funds
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 ml-4">
+                            <h6><i class="far fa-hand-point-right"></i> ScreenShot the QR code</h6>
+                            <h6><i class="far fa-hand-point-right"></i> Use PhonePe to pay To QR-Code</h6>
+                            <h6><i class="far fa-hand-point-right"></i> Take the screenshot of payment done & submit the
+                                form</h6>
+                            <h6><i class="far fa-hand-point-right"></i> Wait For us to verify the Payment, Once verified
+                                the amount will be added to your wallet</h6>
+                            <h6><i class="far fa-smile" style="color: deeppink"></i> Enjoy Ordering Followers & Likes
+                                for your Social Media</h6>
+                            <div class="text-center">
+                                <a href="https://api.whatsapp.com/send?phone=919731539815&forceIntent=true&load=loadInIOSExternalSafari"
+                                   class="btn btn-sm rounded-pill btn-whatsapp waves-effect waves-light"
+                                   target="_blank"><i class="fab fa-whatsapp pr-1"></i> Contact
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light mb-4 p-2 text-center">
+                    <h3 class="">Social Platform</h3>
+                    <hr class="mt-1">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <i style="font-size: 64px; color: #4267B2" class="fab fa-facebook mb-4"> Facebook</i>
+                        </div>
+                        <div class="col-lg-6">
+                            <i style="font-size: 64px; color: #CB3055" class="fab fa-instagram mb-4"> Instagram</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light mb-4 p-2 text-center">
+                    <h3 class="">How To's</h3>
+                    <hr class="mt-1">
+                    <div class="row">
+                        <div class="col-lg-6 mb-2">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/HqFSMPY8pFw"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/I2pwcAVonKI"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'components/wallet.html' %}
+{% endblock %}
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}

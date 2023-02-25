@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="container" style="min-height: 100vh">
+        {% include 'components/messages.html' %}
+        <div class="mt-4 mb-4">
+            <h4 class="text-muted text-center mb-3">Orders History
+                {% if orders_data %}
+                    <button type="button" class="btn btn-sm btn-primary rounded-pill" data-toggle="modal"
+                            data-target="#myModal">
+                        New Order
+                    </button>
+                {% endif %}
+
+            </h4>
+            <div class="card card-body" style="box-shadow: 0 0 0.5cm rgba(40,40,40, 0.5);">
+                {% if orders_data %}
+                    <div class="table-responsive text-nowrap">
+                        <table id="myTable" class="table">
+                            <thead>
+                            <tr>
+                                <th class="font-weight-bolder" scope="col">#</th>
+                                <th class="font-weight-bolder" scope="col">Category</th>
+                                <th class="font-weight-bolder" scope="col">Ordered Service</th>
+                                <th class="font-weight-bolder" scope="col">Quantity</th>
+                                <th class="font-weight-bolder" scope="col">Amount</th>
+                                <th class="font-weight-bolder" scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for orders_datum in orders_data %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ orders_datum.smm_service.category.category_name }}</td>
+                                    <td>{{ orders_datum.smm_service.service_name }}</td>
+                                    <td>{{ orders_datum.quantity }}</td>
+                                    <td>{{ orders_datum.amount }}</td>
+                                    <td>{% if orders_datum.status == 'completed' %}Completed{% else %}Not
+                                        Completed{% endif %}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-muted">
+                        <h4>😒 No Orders Yet</h4>
+                        <button type="button" class="btn btn-sm btn-primary rounded-pill" data-toggle="modal"
+                                data-target="#myModal">
+                            New Order
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% with category_data as cd %}
+            {% with smm_data as sd %}
+                {% include 'components/order_modal.html' %}
+            {% endwith %}
+        {% endwith %}
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}
+{% block app_js %}
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#category_id").change(function () {
+                const category_value = $(this).val();
+                $("#amount_id").val("");
+                $("#description_id").text("");
+                $("#link_id").val("");
+
+                $.ajax({
+                    url: '/services_query',
+                    type: "GET",
+                    data: {'cat': category_value},
+                    success: function (response) {
+                        const services_list = response.data
+                        $("#services_id").html("<option selected disabled>Select Service</option>")
+                        services_list.forEach((service) => {
+                            $("#services_id").append(`<option value="${service.service_name}">${service.service_name}</option>`)
+                        });
+                    },
+                });
+            });
+            $("#services_id").change(function () {
+                const service_value = $(this).val();
+                $("#quantity_id").val("")
+                $("#payable_id").val("")
+                $("#link_id").val("");
+
+                $.ajax({
+                    url: '/service_info',
+                    type: "GET",
+                    data: {'ser': service_value},
+                    success: function (response) {
+                        const service_details = response.data
+                        service_details.forEach((service_data) => {
+                            $("#amount_id").val(`${service_data.service_price}`);
+                            $("#description_id").text(`${service_data.service_description}`);
+                            $("#min-quantity").text(` (min ${service_data.minimum_quantity})`);
+                            $("#quantity_id").attr("min", `${service_data.minimum_quantity}`)
+                            $("#quantity_id").keyup(function () {
+                                const price_for_one = $("#amount_id").val() / 1000
+                                $("#payable_id").val(Math.round(price_for_one * $("#quantity_id").val()))
+                            })
+                        });
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock %}

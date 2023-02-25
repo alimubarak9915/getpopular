@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="container mt-5 text-center">
+        <h4 class="text-muted mb-2">
+            Redirecting To Payment Page...
+        </h4>
+        <h4 class="text-muted">
+            Do not Refresh The Page or Close it...
+        </h4>
+        <form method="post"
+              action="https://securegw.paytm.in/theia/api/v1/showPaymentPage?mid={{ data.mid }}&orderId={{ data.orderId }}"
+              name="paytm">
+            {% for key, value in data.items %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endfor %}
+        </form>
+    </div>
+{% endblock %}
+{% block app_js %}
+    <script type="application/javascript">
+        document.paytm.submit();
+    </script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block app_css %}
+    <style>
+        body {
+            background-color: #BDC1BB;
+        }
+    </style>
+{% endblock %}
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
+        <div class="card card-body w-auto" style="box-shadow: 0 0 0.5cm rgba(40,40,40, 0.5);">
+            {% include 'components/messages.html' %}
+            <form class="text-center border border-light p-3" action="{% url 'user:signup' %}" autocomplete="off"
+                  method="POST">
+                {% csrf_token %}
+                <p class="h5 mb-4">REGISTER @ GET POPULAR</p>
+
+
+                <label for="email"></label><input type="email" id="email" name="email"
+                                                  class="form-control mb-1" placeholder="E-mail">
+
+                <label for="password"></label><input type="password" id="password" name="password"
+                                                     class="form-control mb-1" placeholder="Password"
+                                                     aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+                <label for="mobile"></label><input type="text" id="mobile" name="mobile"
+                                                   class="form-control" placeholder="Phone number"
+                                                   aria-describedby="defaultRegisterFormPhoneHelpBlock">
+
+                <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+
+                <p>By clicking
+                    <em>Sign up</em> you agree to our
+                    <a href="{% url 'smm:terms-conditions' %}" target="">terms of service</a><br>
+                    already have an account?
+                    <a href="{% url 'user:login' %}">Sign in</a>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #37474F;">
+    <div class="container">
+        <a class="navbar-brand" href="#"><strong>Get Popular</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item {% if navbar == 'Sign in' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'user:login' %}">Login</a>
+                </li>
+                <li class="nav-item {% if navbar == 'services' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'smm:services' %}">Services</a>
+                </li>
+                <li class="nav-item {% if navbar == 'Terms' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'smm:terms-conditions' %}">Terms</a>
+                </li>
+                <li class="nav-item {% if navbar == 'Sign up' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'user:signup' %}">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

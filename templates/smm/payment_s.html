@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 350px">
+        <div class="card card-body" style="box-shadow: 0 0 0.5cm rgba(40,40,40, 0.5);">
+            <h4 class="text-muted text-center mb-2 text-success">
+                Payment Success...
+                <hr>
+            </h4>
+            <h6 class="">
+                ⚡ Order Completed for <span
+                    class="text-capitalize text-info">{{ order_obj.smm_service.service_name }}</span><br>
+                ⚡ Paid Amount is <span class="text-capitalize text-info">₹ {{ order_obj.amount }}</span><br>
+                ⌛ Be Patient Your Order Will be Completed in <span class="text-capitalize text-info">1 hrs</span>
+            </h6>
+            <a href="{% url 'smm:orders' %}" class="btn btn-sm btn-default rounded-pill">Go to Orders</a>
+        </div>
+    </div>
+{% endblock %}

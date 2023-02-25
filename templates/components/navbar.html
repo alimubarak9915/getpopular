@@ -1,0 +1,60 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #37474F;">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'smm:home' %}"><strong>Get Popular</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if navbar == 'home' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'smm:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item {% if navbar == 'services' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'smm:services' %}">Services</a>
+                    </li>
+                    <li class="nav-item {% if navbar == 'orders' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'smm:orders' %}">Orders</a>
+                    </li>
+                    <li class="nav-item {% if navbar == 'tutorials' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'smm:tutorials' %}">Tutorials</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="../../static/img/male_user_26px.png" alt="user"
+                                 class="">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg-right dropdown-dark"
+                             aria-labelledby="navbarDropdownMenuLink-333">
+                            <a class="dropdown-item" href="#">{{ request.user|capfirst }}</a>
+                            <a class="dropdown-item" href="{% url 'user:logout' %}">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if navbar == 'Sign in' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'user:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item {% if navbar == 'services' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'smm:services' %}">Services</a>
+                    </li>
+                    <li class="nav-item {% if navbar == 'terms' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'smm:terms-conditions' %}">Terms</a>
+                    </li>
+                    <li class="nav-item {% if navbar == 'Sign up' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'user:signup' %}">Sign up</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
+
+</nav>
